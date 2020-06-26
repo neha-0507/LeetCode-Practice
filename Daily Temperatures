@@ -1,0 +1,14 @@
+# Time Complexity - O(2N)
+# Space Complexity - O(N)
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        result=[0]*len(T)
+        if(T==None or len(T)==0):
+            return result
+        stack=[]
+        for i in range(len(T)):
+            while(stack and T[i]>T[stack[-1]]):
+                index=stack.pop()
+                result[index]=i-index
+            stack.append(i)
+        return result
